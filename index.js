@@ -1,4 +1,5 @@
     //  global scope variable;
+alert("test");
     var i = 0;
     var seq = []; //array for storing game generates sequence
     var str = []; //array for storing user input sequence
