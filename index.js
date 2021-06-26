@@ -1,6 +1,9 @@
-var p = [];
-var s = [];
-p.push(prompt("Enter your name"));
+//  global scope variable;
+
+var i = 0; 
+var seq = []; //array for storing game generates sequence
+var str = []; //array for storing user input sequence
+
 // constants
 const s1 = new Audio("sounds/red.mp3");
 const s2 = new Audio("sounds/green.mp3");
@@ -9,6 +12,8 @@ const s4 = new Audio("sounds/blue.mp3");
 const s5 = new Audio("sounds/wrong.mp3");
 
 // functions
+
+//display number takes in a box number and makes animation and sound of that box generated.
 function displayrunner(n) {
     switch (n) {
         case 1:
@@ -44,7 +49,7 @@ function displayrunner(n) {
     }
 }
 
-// press function
+// press function makes the input given box sound when pressed by user
 
 function press(n) {
     switch (n) {
@@ -83,13 +88,13 @@ function press(n) {
     }
 }
 
-//   runner function
+//   runner function 
 function runner() {
     i = 0;
     str = [];
     var r = Math.floor(Math.random() * 4 + 1);
     setTimeout(() => {
-        displayrunner(r);
+    displayrunner(r);
     }, 1000);
 
     return r
@@ -111,13 +116,13 @@ $(document).keydown((evt) => {
     }
     
 })
-var i = 0;
+
 
 function start() {
-
-    var seq = [];
-    var str = [];
+    seq = [];
+    console.log(seq.length)
     seq.push(runner());
+    console.log(seq);
 
     $(".btn").click(function () {
         console.log("i is " + i);
@@ -128,15 +133,19 @@ function start() {
         if (str[i] == seq[i]) {
             i++;
             console.log('i++');
-        } else {
+        } else
+        
+        {
             $("h1").html("Game Over!.... Press any key to continue");
+            console.log("over")
             s5.play();
-            i--;
-
+            i = 0;
         }
+        
         if (i == seq.length) {
             var tem = runner();
             seq.push(tem);
+            console.log(seq);
             $("h1").html("Level " + seq.length);
 
         }
