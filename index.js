@@ -1,9 +1,9 @@
 //  global scope variable;
 
-var i = 0; 
+var i = 0;
 var seq = []; //array for storing game generates sequence
 var str = []; //array for storing user input sequence
-
+var started = false;
 // constants
 const s1 = new Audio("sounds/red.mp3");
 const s2 = new Audio("sounds/green.mp3");
@@ -94,7 +94,7 @@ function runner() {
     str = [];
     var r = Math.floor(Math.random() * 4 + 1);
     setTimeout(() => {
-    displayrunner(r);
+        displayrunner(r);
     }, 1000);
 
     return r
@@ -108,23 +108,22 @@ function runner() {
 $(document).keydown((evt) => {
     if (($("h1").html() === "Press A Key to Start") && ((evt.key == "a") || (evt.key == "A"))) {
         $("h1").html("level 1")
+        started = true;
         start();
     }
     if (($("h1").html() === "Game Over!.... Press any key to continue")) {
         $("h1").html("level 1");
+
         start();
     }
-    
+
 })
 
 
-function start() {
-    seq = [];
-    console.log(seq.length)
-    seq.push(runner());
-    console.log(seq);
 
-    $(".btn").click(function () {
+$(".btn").click(function () {
+    if (started == true) {
+
         console.log("i is " + i);
         str[i] = parseInt(this.innerHTML);
         console.log("you clicked" + str[i]);
@@ -133,25 +132,26 @@ function start() {
         if (str[i] == seq[i]) {
             i++;
             console.log('i++');
-        } else
-        
-        {
+        } else {
             $("h1").html("Game Over!.... Press any key to continue");
             console.log("over")
             s5.play();
             i = 0;
         }
-        
+
         if (i == seq.length) {
             var tem = runner();
             seq.push(tem);
             console.log(seq);
             $("h1").html("Level " + seq.length);
-
         }
-        
+    }
+})
 
-    })
 
-
+function start() {
+    seq = [];
+    console.log(seq.length)
+    seq.push(runner());
+    console.log(seq);
 }
