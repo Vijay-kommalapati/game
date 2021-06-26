@@ -1,9 +1,10 @@
     //  global scope variable;
-alert("test");
     var i = 0;
     var seq = []; //array for storing game generates sequence
     var str = []; //array for storing user input sequence
     var started = false;
+    console.log(screen.width);
+    typeof(screen.width);
     // constants
     const s1 = new Audio("sounds/red.mp3");
     const s2 = new Audio("sounds/green.mp3");
@@ -103,7 +104,7 @@ alert("test");
 
 
     //   PROGRAM
-    if (window.matchMedia("(min-width:950px)").matches) {
+    if (screen.width>950) {
 
         $(document).keydown((evt) => {
             if (($("h1").html() === "Press A Key to Start") && ((evt.key == "a") || (evt.key == "A"))) {
@@ -150,7 +151,7 @@ alert("test");
                 console.log('i++');
             } else {
 
-                if(window.matchMedia("(min-width:950px)").matches){
+                if(screen.width>950){
 
                     $("h1").html("Game Over!.... Press any key to continue");
                 }
